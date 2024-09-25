@@ -100,8 +100,8 @@ class _VideoScreenState extends State<VideoScreen> {
                            crossAxisAlignment: CrossAxisAlignment.start,
                            children: [
                              Container(
-                               height: 65,
-                               width: 65,
+                               height: 70,
+                               width: 70,
                                margin: const EdgeInsets.all(15),
                                decoration: BoxDecoration(
                                  borderRadius: BorderRadius.circular(10),

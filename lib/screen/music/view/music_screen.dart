@@ -25,6 +25,7 @@ class _MusicScreenState extends State<MusicScreen> {
     providerR = context.read<MusicProvider>();
     providerW = context.watch<MusicProvider>();
     return Scaffold(
+
       body: Stack(
         alignment: Alignment.center,
         children: [
@@ -71,7 +72,7 @@ class _MusicScreenState extends State<MusicScreen> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        icon: const Icon(Icons.arrow_back),
+                        icon: const Icon(Icons.arrow_back, color: Colors.white,),
                         color: Colors.grey,
 
                       ),

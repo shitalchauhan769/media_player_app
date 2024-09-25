@@ -1,9 +1,11 @@
 import 'dart:ui';
 
+
+import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
 
 import '../../../provider/music_provider.dart';
 
@@ -84,7 +86,7 @@ class _DaseScreenState extends State<DaseScreen> {
                             color: index == providerW!.selectedSongIndex
                                 ? Colors.blue
                                 : Colors.grey),
-                        margin: EdgeInsets.all(2),
+                        margin: const EdgeInsets.all(2),
                       )),
             ),
             // SmoothPageIndicator(
@@ -124,53 +126,64 @@ class _DaseScreenState extends State<DaseScreen> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(15.0),
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: 70,
-                                  width: 70,
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey,
-                                    boxShadow: const [
-                                      BoxShadow(
-                                          blurRadius: 5,
-                                          color: Colors.white,
-                                          spreadRadius: 1),
-                                    ],
-                                    image: DecorationImage(
-                                      image: NetworkImage(
-                                          "${providerW!.MusicList[index].image}"),
+                            child: InkWell(
+                              onTap: () {
+                                context
+                                    .read<MusicProvider>()
+                                    .changeSongIndex(index);
+                                Navigator.pushNamed(
+                                  context,
+                                  "music",
+                                );
+                              },
+                              child: Row(
+                                children: [
+                                  Container(
+                                    height: 70,
+                                    width: 70,
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey,
+                                      boxShadow: const [
+                                        BoxShadow(
+                                            blurRadius: 5,
+                                            color: Colors.white,
+                                            spreadRadius: 1),
+                                      ],
+                                      image: DecorationImage(
+                                        image: NetworkImage(
+                                            "${providerW!.MusicList[index].image}"),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                                Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    "${providerW!.MusicList[index].name}",
-                                    style: const TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
+                                  const SizedBox(
+                                    width: 20,
                                   ),
-                                ),
-                                Spacer(),
-                                IconButton(
-                                  onPressed: () {
-                                    context
-                                        .read<MusicProvider>()
-                                        .changeSongIndex(index);
-                                    Navigator.pushNamed(
-                                      context,
-                                      "music",
-                                    );
-                                  },
-                                  icon: const Icon(Icons.music_note),
-                                  color: Colors.white,
-                                )
-                              ],
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: Text(
+                                      "${providerW!.MusicList[index].name}",
+                                      style: const TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  IconButton(
+                                    onPressed: () {
+                                      context
+                                          .read<MusicProvider>()
+                                          .changeSongIndex(index);
+                                      Navigator.pushNamed(
+                                        context,
+                                        "music",
+                                      );
+                                    },
+                                    icon: const Icon(Icons.music_note),
+                                    color: Colors.white,
+                                  )
+                                ],
+                              ),
                             ),
                           )
                         ],

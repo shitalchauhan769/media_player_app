@@ -27,6 +27,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
+        iconTheme:IconThemeData(color: Colors.white),
           title:
               const Text("VideoPlayer", style: TextStyle(color: Colors.white)),
           backgroundColor: Colors.black),
